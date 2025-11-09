@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="drK" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VLM — Beautiful Video Player</title>
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/gh/vlmmain/JS@main/Plugins/rvxplayer-v1.js"></script>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="assets/style.css">
+
+</head>
+<body>
+  <!-- Top fixed header -->
+  <header class="topbar">
+    <div class="left">
+      <button id="homeBtn" class="icon-btn" title="Home"><span class="material-icons">home</span></button>
+      <div class="title noSelect">VLM</div>
+    </div>
+    <div class="right">
+      <button id="themeToggle" class="icon-btn" title="Toggle theme"><span class="material-icons" id="themeIcon">dark_mode</span></button>
+    </div>
+  </header>
+  
+  <!-- Main content -->
+  <main class="main">
+    <div id="player-container" class="playerc"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>© <span id="year"></span> VLM — Player</div>
+      <div class="links">
+        <a href="#" class="link">About</a>
+        <a href="#" class="link">Privacy</a>
+        <a href="#" class="link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
