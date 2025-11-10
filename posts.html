@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VLM Posts</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/assets/libs/error-lib.js"></script>
+</head>
+<body>
+<header>
+  <span class="material-icons menu-btn" onclick="toggleMenu()">menu</span>
+  <h1>Posts</h1>
+  <span class="material-icons theme-toggle" onclick="toggleTheme()">dark_mode</span>
+</header>
+
+<nav id="sidebar">
+  <a href="index.html"><span class="material-icons">home</span> Home</a>
+<!--   <a href="posts.html"><span class="material-icons">article</span> Posts</a>
+ -->  <a href="info.html"><span class="material-icons">info</span> Info</a>
+  <a href="privacy.html"><span class="material-icons">privacy_tip</span> Privacy</a>
+</nav>
+
+<main id="postsContainer" class="posts-grid"></main>
+
+<footer class="footer">
+    <div class="footer-inner">
+      <div>© <span id="year"></span> VLM - POSTS</div>
+      <div class="links">
+        <a href="/info.html" class="link">About</a>
+        <a href="/privacy.html" class="link">Privacy</a>
+        <a href="https://t.me/ValalantheChatBot" class="link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+<script src="/assets/script.js"></script>
+<script>
+    /**
+ * Converts a directory listing HTML to JSON array of filenames
+ * @param {string} html - The HTML string of the directory listing
+ * @returns {string[]} - Array of file names (e.g., ["2025-11-09-001.json"])
+ */
+function parseDirectoryHTMLtoJSON(html) {
+    // Create a temporary DOM element to parse HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Select all <a> tags inside <li>
+    const links = doc.querySelectorAll('ul li a');
+
+    // Map hrefs to filenames
+    const files = Array.from(links).map(a => {
+        const href = a.getAttribute('href');
+        return href ? href.split('/').pop() : null;
+    }).filter(Boolean); // remove nulls
+
+    return files;
+}
+    
+async function loadPosts() {
+  const container = document.getElementById('postsContainer');
+  container.innerHTML = '<p>Loading posts...</p>';
+  try{
+  const resp = await fetch('posts/index.json');
+  const files = await resp.json();
+  //console.log(text);
+  } catch (ee){
+    console.log(`${ee}`);
+    error(0001,container);
+  }
+  //const files = parseDirectoryHTMLtoJSON(text); // [...text.matchAll(/href="([^"]+\.json)"/g)].map(x => x[1]);
+  console.log(files);
+  if (files.length === 0) {
+    container.innerHTML = '<p>No posts found.</p>';
+    return;
+  }
+
+  container.innerHTML = '';
+  for (const file of files.reverse()) {
+    try{
+    const res = await fetch(`posts/${file}`);
+    //console.log(await res.text());
+    const data = await res.json();
+    console.log(file);
+
+    const div = document.createElement('div');
+    div.className = 'post-card';
+    div.innerHTML = `
+      <img src="${data.thumb}" alt="${data.title}">
+      <h3>${data.title}</h3>
+      <p>${data.description.substring(0,100)}...</p>
+      <button onclick="go('post.html?id=${file}')" class="btn">Read More</button>
+    `;
+    container.appendChild(div);
+    }catch(e){
+      console.log(e);
+    }
+  }
+}
+function go(a){
+    console.log(a);
+    location.href=a;
+}
+loadPosts();
+</script>
+</body>
+</html>
