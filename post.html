@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post - VLM</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<header>
+  <span class="material-icons menu-btn" onclick="toggleMenu()">menu</span>
+  <h1>Post</h1>
+  <span class="material-icons theme-toggle" onclick="toggleTheme()">dark_mode</span>
+</header>
+
+<nav id="sidebar">
+  <a href="index.html"><span class="material-icons">home</span> Home</a>
+  <a href="posts.html"><span class="material-icons">article</span> Posts</a>
+  <a href="info.html"><span class="material-icons">info</span> Info</a>
+  <a href="privacy.html"><span class="material-icons">privacy_tip</span> Privacy</a>
+</nav>
+<center>
+<main id="postContent" class="post-detail"></main>
+</center>
+<footer class="footer">
+    <div class="footer-inner">
+      <div>© <span id="year"></span> VLM — POST</div>
+      <div class="links">
+        <a href="/info.html" class="link">About</a>
+        <a href="/privacy.html" class="link">Privacy</a>
+        <a href="https://t.me/ValalantheChatBot" class="link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+<script src="/assest/script.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+console.log(id);
+async function loadPost(id) {
+  if (!id) {
+    Swal.fire('404', 'Post not found!', 'error').then(()=>location.href='error.html?code=404');
+    return;
+  }
+
+  try {
+    const res = await fetch('./posts/' + id);
+    const data = await res.json();
+    console.log(JSON.stringify(data));
+    document.getElementById('postContent').innerHTML = `
+      <h2>${data.title}</h2>
+      <img src="${data.thumb}" class="thumb">
+      <p>${data.description}</p>
+      <h3>More Images</h3>
+      <div class="images">
+        ${data.images ? data.images.map(i=>`<img src="${i}">`).join(''):""}
+      </div>
+      <button class="btn" onclick="location.href='playrr/1/imdex.html?id=${data.playerid}'">Watch Video</button>
+    `;
+  } catch (e){
+    console.log(`${e}`);
+    location.href = 'error.html?code=net';
+  }
+}
+loadPost(id);
+</script>
+</body>
+</html>
