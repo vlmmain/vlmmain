@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VLM — Beautiful Video Player</title>
+  <title>VLM — Video Player</title>
 
   <!-- Google Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/gh/vlmmain/JS@main/Plugins/rvxplayer-v1.js"></script>
   <!-- Main stylesheet -->
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/player/style.css">
 
 </head>
 <body>
@@ -20,7 +20,7 @@
   <header class="topbar">
     <div class="left">
       <button id="homeBtn" class="icon-btn" title="Home"><span class="material-icons">home</span></button>
-      <div class="title noSelect">VLM</div>
+      <div class="title noSelect">VLM Player</div>
     </div>
     <div class="right">
       <button id="themeToggle" class="icon-btn" title="Toggle theme"><span class="material-icons" id="themeIcon">dark_mode</span></button>
@@ -30,6 +30,21 @@
   <!-- Main content -->
   <main class="main">
     <div id="player-container" class="playerc"></div>
+    <!-- <div class="player-card">
+      <div class="player-top noSelect">VLM Video Player</div>
+      <div id="player-container" class="video-wrap">
+ -->        <!-- <video id="video" controls preload="metadata" playsinline>
+          <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video> -->
+      <!-- </div> -->
+      <!-- <div class="player-controls">
+        <button id="playPause" class="btn">Play/Pause</button>
+        <button id="pipBtn" class="btn">Picture-in-Picture</button>
+        <button id="downloadBtn" class="btn">Download</button>
+      </div> -->
+    <!-- </div> -->
+    
   </main>
 
   <!-- Footer -->
@@ -37,13 +52,15 @@
     <div class="footer-inner">
       <div>© <span id="year"></span> VLM — Player</div>
       <div class="links">
-        <a href="#" class="link">About</a>
-        <a href="#" class="link">Privacy</a>
-        <a href="#" class="link">Contact</a>
+        <a href="/info.html" class="link">About</a>
+        <a href="/privacy.html" class="link">Privacy</a>
+        <a href="https://t.me/ValalantheChatBot" class="link">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="assets/script.js"></script>
+  <script src="assets/lib/error-lib.js"></script>
+  <script src="assets/player/script.js"></script>
+  
 </body>
 </html>
