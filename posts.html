@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VLM Posts</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/vlmmain/assets/style.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/assets/libs/error-lib.js"></script>
+<script src="/vlmmain/assets/libs/error-lib.js"></script>
 </head>
 <body>
 <header>
@@ -36,7 +36,7 @@
     </div>
   </footer>
 
-<script src="/assets/script.js"></script>
+<script src="/vlmmain/assets/script.js"></script>
 <script>
     /**
  * Converts a directory listing HTML to JSON array of filenames
@@ -64,7 +64,7 @@ async function loadPosts() {
   const container = document.getElementById('postsContainer');
   container.innerHTML = '<p>Loading posts...</p>';
   try{
-  const resp = await fetch('posts/index.json');
+  const resp = await fetch('/vlmmain/posts/index.json');
   const files = await resp.json();
   //console.log(text);
   } catch (ee){
@@ -81,7 +81,7 @@ async function loadPosts() {
   container.innerHTML = '';
   for (const file of files.reverse()) {
     try{
-    const res = await fetch(`posts/${file}`);
+    const res = await fetch(`/vlmmain/posts/${file}`);
     //console.log(await res.text());
     const data = await res.json();
     console.log(file);
