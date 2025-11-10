@@ -26,6 +26,11 @@ function error(code = 404, container) {
       desc: "You don’t have permission to access this page or content.",
       accent: "#f59e0b"
     },
+    0001: {
+      title: "No posts!",
+      desc: "Sorry My simple script cannot detect posts.",
+      accent: "#f59e0b"
+    },
     network: {
       title: "Network Error",
       desc: "We couldn’t connect to the server. Check your connection and try again.",
