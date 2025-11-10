@@ -58,7 +58,7 @@ async function loadPost(id) {
       <div class="images">
         ${data.images ? data.images.map(i=>`<img src="${i}">`).join(''):""}
       </div>
-      <button class="btn" onclick="location.href='playrr/1/imdex.html?id=${data.playerid}'">Watch Video</button>
+      <button class="btn" onclick="location.href='player.html?id=${data.playerid}'">Watch Video</button>
     `;
   } catch (e){
     console.log(`${e}`);
