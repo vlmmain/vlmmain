@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Post - VLM</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/vlmmain/assets/style.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
     </div>
   </footer>
 
-<script src="/assest/script.js"></script>
+<script src="/vlmmain/assest/script.js"></script>
 <script>
 const params = new URLSearchParams(window.location.search);
 const id = params.get('id');
@@ -47,7 +47,7 @@ async function loadPost(id) {
   }
 
   try {
-    const res = await fetch('./posts/' + id);
+    const res = await fetch('/vlmmain/posts/' + id);
     const data = await res.json();
     console.log(JSON.stringify(data));
     document.getElementById('postContent').innerHTML = `
